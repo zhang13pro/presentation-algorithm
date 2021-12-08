@@ -1,19 +1,41 @@
 ---
-theme: seriph
-background: https://source.unsplash.com/collection/94734566/1920x1080
-# apply any windi css classes to the current slide
-class: "text-center"
+layout: cover
 highlighter: shiki
-lineNumbers: true
 monaco: true
-# persist drawings in exports and build
-drawings:
-  persist: false
 ---
 
-# Algorithm with JS
+# Algorithm with JavaScript
 
-[@zhang13pro](https://github.com/zhang13pro)
+<div class="uppercase text-sm tracking-widest">
+zhang13pro
+</div>
+
+<div class="abs-bl mx-14 my-12 flex">
+  <img src="https://static.leetcode-cn.com/cn-mono-assets/production/assets/logo-dark-cn.c42314a8.svg" class="h-8">
+  <div class="ml-3 flex flex-col text-left">
+    <div><b>LeetCode</b></div>
+    <div class="text-sm underline opacity-50">Dec. 07th, 2021</div>
+  </div>
+</div>
+---
+
+## layout: 'intro'
+
+# Zhang13pro
+
+<div class="my-10 grid grid-cols-[40px,1fr] w-min gap-y-4">
+  <ri-github-line class="opacity-50"/>
+  <div><a href="https://github.com/zhang13pro" target="_blank">zhang13pro</a></div>
+  <ri-user-3-line class="opacity-50"/>
+  <div><a href="https://www.xunlu.xyz" target="_blank">xunlu.xyz</a></div>
+</div>
+
+<img src='https://avatars.githubusercontent.com/u/28641249' class='rounded-full w-40 abs-tr mt-18 mr-14' />
+
+---
+
+name: Sponsors
+layout: center
 
 ---
 
@@ -29,7 +51,7 @@ drawings:
 
 ---
 
-# 数组
+# Array
 
 <style>
   h1{
@@ -40,7 +62,52 @@ drawings:
 
 ---
 
-# 二分查找
+# LeetCode-1
+
+[# two-sum](https://leetcode-cn.com/problems/two-sum/)
+
+<div class="grid grid-cols-2 gap-x-4">
+
+```js
+//As you see, a solution is better than no solution
+function twoSum(arr, target) {
+  const len = arr.length;
+
+  for (let i = 0; i < len; i++)
+    for (let j = i + 1; j < len; j++)
+      if (arr[i] + arr[j] === target) return [i, j];
+}
+```
+
+<v-clicks>
+
+```js
+function twoSum(arr, target) {
+  const map = new Map();
+
+  for (let i = 0; i < arr.length; i++)
+    if (map.get(target - arr[i]) === undefined) map.set(arr[i], i);
+    else return [i, map.get(target - arr[i])];
+}
+```
+
+<p class="pt-12">空间换时间、预处理信息（排序）、瓶颈处寻找答案</p>
+
+</v-clicks>
+</div>
+
+<!-- # 冒泡
+
+```js
+function bubbleSort(arr) {
+  const len = arr.length;
+  for (let i = 0; i < len - 1; i++)
+    for (let j = 0; j < len - 1 - i; j++)
+      if (arr[j] > arr[j + 1]) [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+}
+``` -->
+
+<!-- # 二分查找
 
 ```js
 function binarySearch(arr, target) {
@@ -57,7 +124,7 @@ function binarySearch(arr, target) {
 
   return -1;
 }
-```
+``` -->
 
 <!--  T O(logn) S O(1) -->
 
@@ -67,29 +134,33 @@ function binarySearch(arr, target) {
 
 [# move-zeroes](https://leetcode-cn.com/problems/move-zeroes/)
 
+<div class="grid grid-cols-2 gap-x-4">
+
 ```js
-function swap(arr, a, b) {
-  let temp = arr[a];
-  arr[a] = arr[b];
-  arr[b] = temp;
+// using an additional array
+function moveZeroes(arr) {
+  let newArr = [];
+
+  for (const it of arr) if (it) newArr.push(it);
+  for (let i = newArr.length; i < arr.length; i++) newArr.push(0);
+
+  return newArr;
 }
 ```
 
 ```js
-var moveZeroes = function (arr) {
+// two-pointer
+function moveZeroes(arr) {
   let k = 0;
 
   for (let i = 0; i < arr.length; i++)
-    if (arr[i])
-      if (i !== k) swap(arr, i, k++);
-      else k++;
-};
+
+}
 ```
 
-<!--
-  swap函数方便复用，还必须得传入数组参数
-  T O(logn) S O(1)
--->
+<!-- [2,0,3,3,1] -->
+
+</div>
 
 ---
 
@@ -172,20 +243,53 @@ function removeDuplicates(arr) {
 
 # LeetCode-75
 
+<!-- <Progress :count=5></Progress> -->
+
 [# sort-colors](https://leetcode-cn.com/problems/sort-colors/)
 
-```js {monaco}
-// function sortColors(arr) {
-//   arr.sort((a, b) => a - b);
-// }
+<div class="grid grid-cols-2 gap-4">
+<v-clicks>
 
-// function sortColors(arr) {
-//   let len = arr.length;
-//   for (let i = 0; i < len - 1; i++)
-//     for (let j = 0; j < len - 1 - i; j++)
-//       if (arr[j] > arr[j + 1]) swap(arr, j, j + 1);
-// }
+```js
+function sortColors(arr) {
+  arr.sort((a, b) => a - b);
+}
 ```
+
+```js
+function sortColors(arr) {
+  arr.sort((a, b) => a - b);
+}
+```
+
+```js
+function sortColors(arr) {
+  let len = arr.length;
+  for (let i = 0; i < len - 1; i++)
+    for (let j = 0; j < len - 1 - i; j++)
+      if (arr[j] > arr[j + 1]) swap(arr, j, j + 1);
+}
+```
+
+</v-clicks>
+
+<v-clicks>
+
+```js
+function sortColors(arr) {
+  arr.sort((a, b) => a - b);
+}
+```
+
+```js
+function sortColors(arr) {
+  arr.sort((a, b) => a - b);
+}
+```
+
+</v-clicks>
+
+</div>
 
 <!--
 1 库排序函数
@@ -198,10 +302,25 @@ function removeDuplicates(arr) {
 
 ---
 
-![基本排序算法](/sort.png)
+# LeetCode-88
 
-<!-- <style>
-  img{
-   height:100%;
-  }
-</style> -->
+[# merge-sorted-array](https://leetcode-cn.com/problems/merge-sorted-array/)
+
+<div class="grid grid-cols-2 gap-4">
+<v-clicks>
+
+```js
+function merge(nums1, m, nums2, n) {
+  for (let i = m, j = 0; i < m + n; i++) if (j < n) nums1[i] = nums2[j++];
+  nums1.sort((a, b) => a - b);
+}
+```
+
+</v-clicks>
+</div>
+
+---
+
+# You are Welcome~
+
+Slides can be found on [xxx](void:0)

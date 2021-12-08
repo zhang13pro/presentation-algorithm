@@ -48,7 +48,14 @@
   dependencies:
     "@iconify/types" "^1.0.10"
 
-"@iconify/types@^1.0.10", "@iconify/types@^1.0.12":
+"@iconify-json/ri@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmmirror.com/@iconify-json/ri/download/@iconify-json/ri-1.0.1.tgz#20ab1c68951929533234b3c3f548c4c06f258612"
+  integrity sha1-IKscaJUZKVMyNLPD9UjEwG8lhhI=
+  dependencies:
+    "@iconify/types" "^1.0.7"
+
+"@iconify/types@^1.0.10", "@iconify/types@^1.0.12", "@iconify/types@^1.0.7":
   version "1.0.12"
   resolved "https://registry.npmmirror.com/@iconify/types/download/@iconify/types-1.0.12.tgz?cache=0&sync_timestamp=1637169041075&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40iconify%2Ftypes%2Fdownload%2F%40iconify%2Ftypes-1.0.12.tgz#839f1f784b7030b94482d51996570f4dbd7d6796"
   integrity sha512-6er6wSGF3hgc1JEZqiGpg21CTCjHBYOUwqLmb2Idzkjiw6ogalGP0ZMLVutCzah+0WB4yP+Zd2oVPN8jvJ+Ftg==
