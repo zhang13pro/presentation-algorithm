@@ -45,7 +45,8 @@ layout: center
 - 考虑极端(<em>边界</em>)条件
 - 正确本身是相对概念
 - 解决问题比没有解决强
-- 考虑怎样<strong>优化</strong>
+- 接着怎么<strong>优化</strong>
+- 思考给到的*提示*
 
  <!-- 正确本身是相对概念，空间换时间、预处理信息（排序）、瓶颈处寻找答案 -->
 
@@ -71,11 +72,12 @@ layout: center
 ```js
 //As you see, a solution is better than no solution
 function twoSum(arr, target) {
-  const len = arr.length;
+  const len = arr.length
 
   for (let i = 0; i < len; i++)
     for (let j = i + 1; j < len; j++)
-      if (arr[i] + arr[j] === target) return [i, j];
+      if (arr[i] + arr[j] === target) 
+        return [i, j]
 }
 ```
 
@@ -83,11 +85,13 @@ function twoSum(arr, target) {
 
 ```js
 function twoSum(arr, target) {
-  const map = new Map();
+  const map = new Map()
 
   for (let i = 0; i < arr.length; i++)
-    if (map.get(target - arr[i]) === undefined) map.set(arr[i], i);
-    else return [i, map.get(target - arr[i])];
+    if (map.get(target - arr[i]) === undefined) 
+      map.set(arr[i], i)
+    else 
+      return [i, map.get(target - arr[i])]
 }
 ```
 
@@ -96,37 +100,7 @@ function twoSum(arr, target) {
 </v-clicks>
 </div>
 
-<!-- # 冒泡
 
-```js
-function bubbleSort(arr) {
-  const len = arr.length;
-  for (let i = 0; i < len - 1; i++)
-    for (let j = 0; j < len - 1 - i; j++)
-      if (arr[j] > arr[j + 1]) [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-}
-``` -->
-
-<!-- # 二分查找
-
-```js
-function binarySearch(arr, target) {
-  let l = 0,
-    r = arr.length - 1;
-
-  while (l < r) {
-    let mid = l + (r - l) / 2; // 防止数值溢出bug
-    if (arr[mid] === target) return mid;
-
-    if (arr[mid] < target) l = mid + 1;
-    else r = mid;
-  }
-
-  return -1;
-}
-``` -->
-
-<!--  T O(logn) S O(1) -->
 
 ---
 
@@ -134,51 +108,84 @@ function binarySearch(arr, target) {
 
 [# move-zeroes](https://leetcode-cn.com/problems/move-zeroes/)
 
-<div class="grid grid-cols-2 gap-x-4">
+<div class="grid grid-cols-2 gap-x-4 gap-y-2">
 
-```js
+<v-clicks>
+
+```js 
 // using an additional array
 function moveZeroes(arr) {
-  let newArr = [];
+  let newArr = []
 
-  for (const it of arr) if (it) newArr.push(it);
-  for (let i = newArr.length; i < arr.length; i++) newArr.push(0);
+  for (const it of arr) 
+    if (it) newArr.push(it)
+  for (let i = newArr.length; i < arr.length; i++) 
+    newArr.push(0)
 
-  return newArr;
+  return newArr
 }
 ```
 
 ```js
-// two-pointer
+// two-pointer with no additional array
 function moveZeroes(arr) {
-  let k = 0;
+  let k = 0
 
-  for (let i = 0; i < arr.length; i++)
-
+  for (let i = 0; i < arr.length; i++) 
+    if (arr[i]) arr[k++] = arr[i]
+  
+  for (let i = k; i < arr.length; i++) 
+    arr[i] = 0
 }
 ```
 
-<!-- [2,0,3,3,1] -->
+```js
+// two-pointer with no additional array
+function moveZeroes(arr) {
+  let k = 0
+
+  for (let i = 0; i < arr.length; i++) 
+    if (arr[i]) 
+      if(i!==k) swap(arr, k++, i)
+      else k++
+}
+```
+
+<!-- [0,1,0,3,12] -->
+
+<p class="pt-12 pl-4">在数组中使用双指针是很常用的技巧</p>
+
+</v-clicks>
 
 </div>
 
+
+
 ---
 
-# LeetCode-27
+# Practice
+
+<div class="grid grid-cols-2 gap-x-4 gap-y-2">
+
+  <div v-click>
+
+
+LeetCode-27
 
 [# remove-element](https://leetcode-cn.com/problems/remove-element/)
 
-要求不使用额外<em>空间</em>
+<!-- 要求不使用额外<em>空间</em> -->
 
 ```js
 function removeElement(arr, target) {
-  let count = 0;
-  const len = arr.length;
+  let count = 0
+  const len = arr.length
+  
   for (let i = 0; i < len; i++)
-    if (arr[i] === target) continue;
-    else arr[count++] = arr[i];
+    if (arr[i] === target) continue
+    else arr[count++] = arr[i]
 
-  return count;
+  return count
 }
 ```
 
@@ -186,50 +193,67 @@ function removeElement(arr, target) {
   [1,2,2,4] 2
   T:O(n) S:O(1) 双指针
   -->
+  </div>
 
----
-
-# LeetCode-26
+  <div v-click>
+ LeetCode-26
 
 [# remove-duplicates-from-sorted-array](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/)
 
-要求不使用额外<em>空间</em>
+<!-- 要求不使用额外<em>空间</em> -->
 
 ```js
 function removeDuplicates(arr) {
-  const len = arr.length;
-  let count = 1;
+  const len = arr.length
+  let count = 1
 
-  if (len < 2) return len;
+  if (len < 2) return len
   for (let i = 1; i < len; i++)
-    if (arr[i] === arr[count - 1]) continue;
-    else arr[count++] = arr[i];
+    if (arr[i] === arr[count - 1]) continue
+    else arr[count++] = arr[i]
 
-  return count;
+  return count
 }
 ```
+  </div>
 
- <!-- T:O(n) S:O(1) 双指针 -->
+</div>
+
+
+
 
 ---
 
-# LeetCode-80
+# Practice
+
+<div class="grid grid-cols-2 gap-4">
+  <div v-click="1">
+
+ LeetCode-80
 
 [# remove-duplicates-from-sorted-array-ii](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/)
 
 ```js
 function removeDuplicates(arr) {
-  const len = arr.length;
-  let count = 2;
+  const len = arr.length
+  let count = 2
 
-  if (len < 3) return len;
+  if (len < 3) return len
   for (let i = 2; i < len; i++)
-    if (arr[i] === arr[count - 2]) continue;
-    else arr[count++] = arr[i];
+    if (arr[i] === arr[count - 2]) continue
+    else arr[count++] = arr[i]
 
-  return count;
+  return count
 }
 ```
+  </div>
+  <div v-click="2" class="text-xl p-2">
+
+    双指针无所不在🤨
+
+  </div>
+
+</div>
 
 <!--
       c c c
@@ -239,6 +263,8 @@ function removeDuplicates(arr) {
   T:O(n) S:O(1)
  -->
 
+
+
 ---
 
 # LeetCode-75
@@ -247,47 +273,61 @@ function removeDuplicates(arr) {
 
 [# sort-colors](https://leetcode-cn.com/problems/sort-colors/)
 
-<div class="grid grid-cols-2 gap-4">
-<v-clicks>
+<div class="grid grid-cols-2 gap-x-4">
+  <v-clicks>
+
 
 ```js
-function sortColors(arr) {
-  arr.sort((a, b) => a - b);
-}
-```
-
-```js
-function sortColors(arr) {
-  arr.sort((a, b) => a - b);
-}
-```
-
-```js
-function sortColors(arr) {
-  let len = arr.length;
+// 使用基本排序 你当然可以使用 sort API
+function bubbleSort(arr) {
+  let len = arr.length
+  
   for (let i = 0; i < len - 1; i++)
     for (let j = 0; j < len - 1 - i; j++)
-      if (arr[j] > arr[j + 1]) swap(arr, j, j + 1);
-}
-```
-
-</v-clicks>
-
-<v-clicks>
-
-```js
-function sortColors(arr) {
-  arr.sort((a, b) => a - b);
+      if (arr[j] > arr[j + 1]) 
+        swap(arr, j, j + 1)
 }
 ```
 
 ```js
-function sortColors(arr) {
+function selectionSort(arr) {
+  let len = arr.length, minIndex 
+
+  for (let i = 0; i < len; i++) {
+    minIndex = i
+    for (let j = i+1; j < len; j++) 
+      if (arr[j] < arr[minIndex]) minIndex = j
+    swap(arr, minIndex, i)
+  }
+}
+```
+
+<!-- function binarySearch(arr, target) {
+  let l = 0, r = arr.length - 1
+  while (l < r) {
+    let mid = l + (r - l) / 2 // 防止数值溢出
+    if (arr[mid] === target) return mid
+    if (arr[mid] < target) l = mid + 1
+    else r = mid;
+  }
+
+  return -1
+} -->
+
+```js
+function quickSort() {
+  
+}
+```
+
+```js
+function quickSort(arr) {
   arr.sort((a, b) => a - b);
 }
 ```
 
-</v-clicks>
+  </v-clicks>
+
 
 </div>
 
@@ -299,6 +339,8 @@ function sortColors(arr) {
   [6,5,4,3,2,1]
 3 优化 快排
 -->
+
+
 
 ---
 
