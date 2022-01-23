@@ -19,23 +19,16 @@ zhang13pro
 </div>
 ---
 
-## layout: 'intro'
-
 # Zhang13pro
 
 <div class="my-10 grid grid-cols-[40px,1fr] w-min gap-y-4">
   <ri-github-line class="opacity-50"/>
   <div><a href="https://github.com/zhang13pro" target="_blank">zhang13pro</a></div>
   <ri-user-3-line class="opacity-50"/>
-  <div><a href="https://www.xunlu.xyz" target="_blank">xunlu.xyz</a></div>
+  <div><a href="https://13press.vercel.app" target="_blank">13press.vercel.app</a></div>
 </div>
 
 <img src='https://avatars.githubusercontent.com/u/28641249' class='rounded-full w-40 abs-tr mt-18 mr-14' />
-
----
-
-name: Sponsors
-layout: center
 
 ---
 
@@ -72,12 +65,11 @@ layout: center
 ```js
 //As you see, a solution is better than no solution
 function twoSum(arr, target) {
-  const len = arr.length
+  const len = arr.length;
 
   for (let i = 0; i < len; i++)
     for (let j = i + 1; j < len; j++)
-      if (arr[i] + arr[j] === target) 
-        return [i, j]
+      if (arr[i] + arr[j] === target) return [i, j];
 }
 ```
 
@@ -85,13 +77,11 @@ function twoSum(arr, target) {
 
 ```js
 function twoSum(arr, target) {
-  const map = new Map()
+  const map = new Map();
 
   for (let i = 0; i < arr.length; i++)
-    if (map.get(target - arr[i]) === undefined) 
-      map.set(arr[i], i)
-    else 
-      return [i, map.get(target - arr[i])]
+    if (map.get(target - arr[i]) === undefined) map.set(arr[i], i);
+    else return [i, map.get(target - arr[i])];
 }
 ```
 
@@ -99,8 +89,6 @@ function twoSum(arr, target) {
 
 </v-clicks>
 </div>
-
-
 
 ---
 
@@ -112,42 +100,38 @@ function twoSum(arr, target) {
 
 <v-clicks>
 
-```js 
+```js
 // using an additional array
 function moveZeroes(arr) {
-  let newArr = []
+  let newArr = [];
 
-  for (const it of arr) 
-    if (it) newArr.push(it)
-  for (let i = newArr.length; i < arr.length; i++) 
-    newArr.push(0)
+  for (const it of arr) if (it) newArr.push(it);
+  for (let i = newArr.length; i < arr.length; i++) newArr.push(0);
 
-  return newArr
+  return newArr;
 }
 ```
 
 ```js
 // two-pointer with no additional array
 function moveZeroes(arr) {
-  let k = 0
+  let k = 0;
 
-  for (let i = 0; i < arr.length; i++) 
-    if (arr[i]) arr[k++] = arr[i]
-  
-  for (let i = k; i < arr.length; i++) 
-    arr[i] = 0
+  for (let i = 0; i < arr.length; i++) if (arr[i]) arr[k++] = arr[i];
+
+  for (let i = k; i < arr.length; i++) arr[i] = 0;
 }
 ```
 
 ```js
 // two-pointer with no additional array
 function moveZeroes(arr) {
-  let k = 0
+  let k = 0;
 
-  for (let i = 0; i < arr.length; i++) 
-    if (arr[i]) 
-      if(i!==k) swap(arr, k++, i)
-      else k++
+  for (let i = 0; i < arr.length; i++)
+    if (arr[i])
+      if (i !== k) swap(arr, k++, i);
+      else k++;
 }
 ```
 
@@ -159,8 +143,6 @@ function moveZeroes(arr) {
 
 </div>
 
-
-
 ---
 
 # Practice
@@ -168,7 +150,6 @@ function moveZeroes(arr) {
 <div class="grid grid-cols-2 gap-x-4 gap-y-2">
 
   <div v-click>
-
 
 LeetCode-27
 
@@ -178,14 +159,14 @@ LeetCode-27
 
 ```js
 function removeElement(arr, target) {
-  let count = 0
-  const len = arr.length
-  
-  for (let i = 0; i < len; i++)
-    if (arr[i] === target) continue
-    else arr[count++] = arr[i]
+  let count = 0;
+  const len = arr.length;
 
-  return count
+  for (let i = 0; i < len; i++)
+    if (arr[i] === target) continue;
+    else arr[count++] = arr[i];
+
+  return count;
 }
 ```
 
@@ -204,23 +185,21 @@ function removeElement(arr, target) {
 
 ```js
 function removeDuplicates(arr) {
-  const len = arr.length
-  let count = 1
+  const len = arr.length;
+  let count = 1;
 
-  if (len < 2) return len
+  if (len < 2) return len;
   for (let i = 1; i < len; i++)
-    if (arr[i] === arr[count - 1]) continue
-    else arr[count++] = arr[i]
+    if (arr[i] === arr[count - 1]) continue;
+    else arr[count++] = arr[i];
 
-  return count
+  return count;
 }
 ```
+
   </div>
 
 </div>
-
-
-
 
 ---
 
@@ -229,23 +208,24 @@ function removeDuplicates(arr) {
 <div class="grid grid-cols-2 gap-4">
   <div v-click="1">
 
- LeetCode-80
+LeetCode-80
 
 [# remove-duplicates-from-sorted-array-ii](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/)
 
 ```js
 function removeDuplicates(arr) {
-  const len = arr.length
-  let count = 2
+  const len = arr.length;
+  let count = 2;
 
-  if (len < 3) return len
+  if (len < 3) return len;
   for (let i = 2; i < len; i++)
-    if (arr[i] === arr[count - 2]) continue
-    else arr[count++] = arr[i]
+    if (arr[i] === arr[count - 2]) continue;
+    else arr[count++] = arr[i];
 
-  return count
+  return count;
 }
 ```
+
   </div>
   <div v-click="2" class="text-xl p-2">
 
@@ -263,8 +243,6 @@ function removeDuplicates(arr) {
   T:O(n) S:O(1)
  -->
 
-
-
 ---
 
 # LeetCode-75
@@ -276,28 +254,26 @@ function removeDuplicates(arr) {
 <div class="grid grid-cols-2 gap-x-4">
   <v-clicks>
 
-
 ```js
 // 使用基本排序 你当然可以使用 sort API
 function bubbleSort(arr) {
-  let len = arr.length
-  
+  let len = arr.length;
+
   for (let i = 0; i < len - 1; i++)
     for (let j = 0; j < len - 1 - i; j++)
-      if (arr[j] > arr[j + 1]) 
-        swap(arr, j, j + 1)
+      if (arr[j] > arr[j + 1]) swap(arr, j, j + 1);
 }
 ```
 
 ```js
 function selectionSort(arr) {
-  let len = arr.length, minIndex 
+  let len = arr.length,
+    minIndex;
 
   for (let i = 0; i < len; i++) {
-    minIndex = i
-    for (let j = i+1; j < len; j++) 
-      if (arr[j] < arr[minIndex]) minIndex = j
-    swap(arr, minIndex, i)
+    minIndex = i;
+    for (let j = i + 1; j < len; j++) if (arr[j] < arr[minIndex]) minIndex = j;
+    swap(arr, minIndex, i);
   }
 }
 ```
@@ -315,9 +291,7 @@ function selectionSort(arr) {
 } -->
 
 ```js
-function quickSort() {
-  
-}
+function quickSort() {}
 ```
 
 ```js
@@ -327,7 +301,6 @@ function quickSort(arr) {
 ```
 
   </v-clicks>
-
 
 </div>
 
@@ -339,8 +312,6 @@ function quickSort(arr) {
   [6,5,4,3,2,1]
 3 优化 快排
 -->
-
-
 
 ---
 
